@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshCheck – Smart Food Freshness Indicator</title>
+    <meta name="description" content="A simple sticker that protects food, health, and the planet.">
+    <!-- Fonts: Poppins (Headers) and Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #22c55e;
+            --primary-hover: #16a34a;
+            --secondary-color: #3b82f6;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-light: #f8fafc;
+            --text-muted: #cbd5e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-light);
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        /* BACKGROUND & OVERLAY */
+        #bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1s ease-in-out;
+            transform: scale(1.05); /* Slight scale to prevent edge bleed during transitions */
+        }
+
+        #bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 100%);
+            z-index: -1;
+        }
+
+        /* PROGRESS BAR */
+        .progress-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            z-index: 10;
+        }
+
+        #progress-bar {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 15px var(--primary-color);
+        }
+
+        /* LAYOUT */
+        .presentation-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px 100px 20px;
+        }
+
+        /* GLASS CARD */
+        .slide {
+            display: none;
+            width: 100%;
+            max-width: 1000px;
+            padding: 60px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .slide.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* SLIDE CONTENT ANIMATION */
+        .slide.active .slide-content > * {
+            animation: fadeInUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            opacity: 0;
+        }
+
+        .slide-content > *:nth-child(1) { animation-delay: 0.1s; }
+        .slide-content > *:nth-child(2) { animation-delay: 0.25s; }
+        .slide-content > *:nth-child(3) { animation-delay: 0.4s; }
+        .slide-content > *:nth-child(4) { animation-delay: 0.55s; }
+        .slide-content > *:nth-child(5) { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff, #a7f3d0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            padding-bottom: 12px;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+        
+        h3 {
+            font-size: 1.75rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #93c5fd;
+        }
+
+        p {
+            font-size: 1.35rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .tagline {
+            font-size: 1.85rem;
+            font-weight: 500;
+            font-style: italic;
+            color: #a7f3d0;
+            margin-top: 2.5rem;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 25px;
+            background: rgba(34, 197, 94, 0.05);
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-radius: 0 12px 12px 0;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        ul li {
+            font-size: 1.35rem;
+            margin-bottom: 1.25rem;
+            padding-left: 40px;
+            position: relative;
+            line-height: 1.5;
+            color: #e2e8f0;
+        }
+
+        ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* STATUS BADGES */
+        .status-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            padding: 16px 25px;
+            border-radius: 16px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.35rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: default;
+        }
+
+        .status-badge:hover {
+            transform: translateX(15px) scale(1.02);
+            background: rgba(0,0,0,0.6);
+            border-color: rgba(255,255,255,0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .status-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 25px;
+            box-shadow: 0 0 15px currentColor;
+            flex-shrink: 0;
+        }
+
+        .status-green .status-icon { background: #22c55e; color: #22c55e; }
+        .status-yellow .status-icon { background: #eab308; color: #eab308; }
+        .status-red .status-icon { background: #ef4444; color: #ef4444; }
+
+        /* MULTI-COLUMN LISTS */
+        .grid-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 40px;
+            margin-top: 30px;
+        }
+        
+        .grid-list ul { margin-top: 0; }
+        
+        .highlight-box {
+            padding: 25px;
+            background: rgba(239, 68, 68, 0.15);
+            border-left: 5px solid #ef4444;
+            border-radius: 12px;
+            margin-top: 35px;
+            font-size: 1.35rem;
+            backdrop-filter: blur(5px);
+        }
+
+        /* CONTROLS */
+        .controls-container {
+            position: fixed;
+            bottom: 40px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 60px;
+            z-index: 10;
+        }
+
+        .slide-counter {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            background: rgba(0,0,0,0.6);
+            padding: 10px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 30px;
+            font-size: 1.15rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        button:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border-color: var(--primary-hover);
+            box-shadow: 0 4px 20px rgba(34, 197, 94, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.6);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.2rem; }
+            p, ul li, .status-badge { font-size: 1.15rem; }
+            .slide { padding: 40px; margin: 0 20px; }
+            .grid-list { grid-template-columns: 1fr; gap: 0; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .controls-container { padding: 0 20px; bottom: 25px; }
+            button { padding: 12px 20px; font-size: 1rem; }
+            .tagline { font-size: 1.25rem; }
+            .slide { padding: 30px 20px; margin: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="bg-container"></div>
+    <div id="bg-overlay"></div>
+
+    <div class="progress-bar-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <div class="presentation-container">
+        
+        <!-- Slide 1 - Title -->
+        <div class="slide" data-bg="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h1>FreshCheck</h1>
+                <p style="font-size: 1.7rem; font-weight: 500; color: #fff; margin-bottom: 0;">Smart Sticker for Food Freshness Detection</p>
+                <div class="tagline">
+                    “A simple sticker that protects food, health, and the planet.”
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 - Problem -->
+        <div class="slide" data-bg="https://images.unsplash.com/photo-1605640840605-14ac1855827b?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Problem Statement</h2>
+                <p>The staggering reality of global food waste:</p>
+                <ul>
+                    <li><strong>1.3 billion tons</strong> of food wasted globally every year</li>
+                    <li>One-third of all food produced is lost or wasted</li>
+                    <li>1.05 billion tonnes wasted specifically in recent measurements</li>
+                </ul>
+                <h3>Why this happens:</h3>
+                <ul>
+                    <li>Confusing and inaccurate expiration labels</li>
+                    <li>Poor storage conditions impacting real lifespan</li>
+                    <li><strong>No real-time freshness indicators</strong> for end consumers</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3 - Health -->
+        <div class="slide" data-bg="https://images.unsplash.com/photo-1584473457406-6240486418e9?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Health Impact</h2>
+                <p>Spoiled food is a major, hidden public health hazard worldwide:</p>
+                <ul>
+                    <li><strong>600 million</strong> people get sick from contaminated food annually</li>
+                    <li>Causes <strong>420,000 deaths</strong> each year</li>
+                    <li>Creates <strong>$110 billion</strong> in economic losses globally</li>
+                </ul>
+                <div class="highlight-box">
+                    <strong>Core Problem:</strong> Consumers cannot easily detect true decay, relying on guesswork or smell-tests that are often inaccurate and dangerous.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4 - Solution -->
+        <div class="slide" data-bg="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Our Solution</h2>
+                <p>FreshCheck is a bio-reactive smart sticker that detects food spoilage in real time. It reacts to <strong>ammonia gas, ethylene gas, and moisture</strong> directly inside the packaging.</p>
+                
+                <div class="status-container">
+                    <div class="status-badge status-green">
+                        <div class="status-icon"></div>
+                        <span><strong>Green:</strong> Fresh & Safe</span>
+                    </div>
+                    <div class="status-badge status-yellow">
+                        <div class="status-icon"></div>
+                        <span><strong>Yellow:</strong> Consume Soon</span>
+                    </div>
+                    <div class="status-badge status-red">
+                        <div class="status-icon"></div>
+                        <span><strong>Red:</strong> Spoiled</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5 - Benefits -->
+        <div class="slide" data-bg="https://images.unsplash.com/photo-1543168256-4154004e4e25?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Benefits</h2>
+                <ul>
+                    <li><strong>Prevents Food Poisoning:</strong> Guarantees food safety with verifiable chemistry.</li>
+                    <li><strong>Reduces Food Waste:</strong> Maximizes the consumable timeline of fresh produce and meats.</li>
+                    <li><strong>Real-time Monitoring:</strong> Eliminates reliance on worst-case printed expiration dates.</li>
+                    <li><strong>Better Inventory Management:</strong> Enables dynamic pricing for grocers based on actual quality.</li>
+                    <li><strong>Improves Consumer Trust:</strong> Boosts brand reputation for companies adopting transparent packaging.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 6 - Target -->
+        <div class="slide" data-bg="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Target Users</h2>
+                <p>FreshCheck connects and protects the entire food supply chain:</p>
+                <div class="grid-list">
+                    <ul>
+                        <li><strong>Supermarkets</strong> (waste reduction, dynamic discounting)</li>
+                        <li><strong>Food Packaging Companies</strong> (value-add integration)</li>
+                        <li><strong>Restaurants</strong> (ingredient quality assurance)</li>
+                    </ul>
+                    <ul>
+                        <li><strong>Cold Chain Logistics</strong> (transit condition verification)</li>
+                        <li><strong>Food Delivery</strong> (quality proof upon arrival)</li>
+                        <li><strong>Consumers at Home</strong> (peace of mind)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7 - Strengths -->
+        <div class="slide" data-bg="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Strengths</h2>
+                <ul>
+                    <li>Real-time, chemical freshness monitoring rather than static estimations</li>
+                    <li>Extremely simple color indicator requiring zero technological literacy</li>
+                    <li>Low cost of manufacturing makes it viable for everyday smart packaging</li>
+                    <li>Directly tackles macro-trends like food waste reduction and sustainability</li>
+                    <li>Significantly improves public safety awareness</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 8 - Weaknesses -->
+        <div class="slide" data-bg="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Weaknesses</h2>
+                <div style="padding: 30px; background: rgba(255,255,255,0.05); border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
+                    <ul style="margin: 0;">
+                        <li>Needs individual chemical calibration for different food types (meat vs. fish vs. veg)</li>
+                        <li>Potential environmental sensitivity (temperature spikes could affect the sticker dye itself)</li>
+                        <li>Regulatory approvals (e.g., FDA) required before integration with food packaging</li>
+                        <li>Consumers must be taught to trust the indicator over the printed date</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9 - Opportunities -->
+        <div class="slide" data-bg="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Opportunities</h2>
+                <ul>
+                    <li>Rapidly growing multi-billion dollar smart packaging market</li>
+                    <li>Global and governmental focus shift toward eliminating food waste</li>
+                    <li>Massive expansion of grocery delivery services needing quality guarantees</li>
+                    <li>Lucrative partnerships with major supermarkets for exclusive rollouts</li>
+                    <li>Increasing consumer demand for transparent and safe food sourcing</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 10 - Threats -->
+        <div class="slide" data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Threats</h2>
+                <ul>
+                    <li>Competition from well-funded IoT or embedded smart packaging companies</li>
+                    <li>Extra cost concerns from budget food producers driving resistance</li>
+                    <li>Strict regulatory barriers protecting traditional labeling conventions</li>
+                    <li>Massive reputational risk if inaccurate readings lead to foodborne illness</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="controls-container">
+        <div class="slide-counter" id="slide-counter">1 / 10</div>
+        <div class="nav-buttons">
+            <button id="prevBtn" onclick="prevSlide()">
+                <span>←</span> Previous
+            </button>
+            <button id="nextBtn" class="btn-primary" onclick="nextSlide()">
+                Next <span>→</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const bgContainer = document.getElementById('bg-container');
+        const progressBar = document.getElementById('progress-bar');
+        const slideCounter = document.getElementById('slide-counter');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Preload background images to prevent lag
+        const preloadedImages = [];
+        slides.forEach(slide => {
+            const img = new Image();
+            img.src = slide.dataset.bg;
+            preloadedImages.push(img);
+        });
+
+        function updateSlide(index) {
+            // Guard clauses for bounds
+            if (index < 0) index = 0;
+            if (index > slides.length - 1) index = slides.length - 1;
+            
+            const prevIndex = currentSlideIndex;
+            currentSlideIndex = index;
+
+            // Update DOM Classes
+            if (slides[prevIndex]) {
+                slides[prevIndex].classList.remove('active');
+            }
+            
+            // Re-trigger animation by forcing reflow
+            const currentContent = slides[currentSlideIndex].querySelector('.slide-content');
+            currentContent.style.animation = 'none';
+            void currentContent.offsetWidth; // Trigger reflow
+            currentContent.style.animation = null; 
+
+            slides[currentSlideIndex].classList.add('active');
+
+            // Update Background Style
+            const bgUrl = slides[currentSlideIndex].dataset.bg;
+            bgContainer.style.backgroundImage = `url('${bgUrl}')`;
+
+            // Update Progress Bar
+            const progressPercentage = ((currentSlideIndex + 1) / slides.length) * 100;
+            progressBar.style.width = `${progressPercentage}%`;
+
+            // Update Slide Counter
+            slideCounter.textContent = `${currentSlideIndex + 1} / ${slides.length}`;
+
+            // Update Next/Prev Button States
+            prevBtn.disabled = currentSlideIndex === 0;
+            
+            if (currentSlideIndex === slides.length - 1) {
+                nextBtn.innerHTML = `Finish <span>✓</span>`;
+                nextBtn.style.background = "#ffffff";
+                nextBtn.style.color = "#000000";
+                nextBtn.classList.remove("btn-primary");
+            } else {
+                nextBtn.innerHTML = `Next <span>→</span>`;
+                nextBtn.style.background = "";
+                nextBtn.style.color = "";
+                nextBtn.classList.add("btn-primary");
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                updateSlide(currentSlideIndex + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                updateSlide(currentSlideIndex - 1);
+            }
+        }
+
+        // Global Keyboard Event Listener
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+                if(e.key === ' ') e.preventDefault(); // Prevent page scroll
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // Initialize the first slide
+        window.addEventListener('DOMContentLoaded', () => {
+            updateSlide(0);
+        });
+    </script>
+</body>
+</html>
