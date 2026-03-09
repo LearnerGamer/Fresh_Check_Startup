@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
     <!-- Fonts: Poppins (Headers) and Inter (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-color: #22c55e;
@@ -33,7 +36,9 @@
             background-color: #000;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
         }
@@ -49,7 +54,8 @@
             background-size: cover;
             background-position: center;
             transition: background-image 1s ease-in-out;
-            transform: scale(1.05); /* Slight scale to prevent edge bleed during transitions */
+            transform: scale(1.05);
+            /* Slight scale to prevent edge bleed during transitions */
         }
 
         #bg-overlay {
@@ -58,7 +64,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 100%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 100%);
             z-index: -1;
         }
 
@@ -69,7 +75,7 @@
             left: 0;
             width: 100%;
             height: 6px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             z-index: 10;
         }
 
@@ -114,22 +120,37 @@
         }
 
         /* SLIDE CONTENT ANIMATION */
-        .slide.active .slide-content > * {
+        .slide.active .slide-content>* {
             animation: fadeInUp 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
             opacity: 0;
         }
 
-        .slide-content > *:nth-child(1) { animation-delay: 0.1s; }
-        .slide-content > *:nth-child(2) { animation-delay: 0.25s; }
-        .slide-content > *:nth-child(3) { animation-delay: 0.4s; }
-        .slide-content > *:nth-child(4) { animation-delay: 0.55s; }
-        .slide-content > *:nth-child(5) { animation-delay: 0.7s; }
+        .slide-content>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .slide-content>*:nth-child(2) {
+            animation-delay: 0.25s;
+        }
+
+        .slide-content>*:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .slide-content>*:nth-child(4) {
+            animation-delay: 0.55s;
+        }
+
+        .slide-content>*:nth-child(5) {
+            animation-delay: 0.7s;
+        }
 
         @keyframes fadeInUp {
             0% {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
@@ -150,12 +171,12 @@
             font-size: 3rem;
             margin-bottom: 1.5rem;
             color: #ffffff;
-            border-bottom: 2px solid rgba(255,255,255,0.1);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 12px;
             display: inline-block;
             letter-spacing: -0.5px;
         }
-        
+
         h3 {
             font-size: 1.75rem;
             margin-top: 2rem;
@@ -221,8 +242,8 @@
             align-items: center;
             padding: 16px 25px;
             border-radius: 16px;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 1.35rem;
             font-weight: 500;
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -231,9 +252,9 @@
 
         .status-badge:hover {
             transform: translateX(15px) scale(1.02);
-            background: rgba(0,0,0,0.6);
-            border-color: rgba(255,255,255,0.2);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
         .status-icon {
@@ -245,9 +266,20 @@
             flex-shrink: 0;
         }
 
-        .status-green .status-icon { background: #22c55e; color: #22c55e; }
-        .status-yellow .status-icon { background: #eab308; color: #eab308; }
-        .status-red .status-icon { background: #ef4444; color: #ef4444; }
+        .status-green .status-icon {
+            background: #22c55e;
+            color: #22c55e;
+        }
+
+        .status-yellow .status-icon {
+            background: #eab308;
+            color: #eab308;
+        }
+
+        .status-red .status-icon {
+            background: #ef4444;
+            color: #ef4444;
+        }
 
         /* MULTI-COLUMN LISTS */
         .grid-list {
@@ -256,9 +288,11 @@
             gap: 20px 40px;
             margin-top: 30px;
         }
-        
-        .grid-list ul { margin-top: 0; }
-        
+
+        .grid-list ul {
+            margin-top: 0;
+        }
+
         .highlight-box {
             padding: 25px;
             background: rgba(239, 68, 68, 0.15);
@@ -286,11 +320,11 @@
             font-size: 1.1rem;
             font-weight: 600;
             letter-spacing: 2px;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             padding: 10px 20px;
             border-radius: 30px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-buttons {
@@ -299,7 +333,7 @@
         }
 
         button {
-            background: rgba(0,0,0,0.4);
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             color: white;
@@ -316,10 +350,10 @@
         }
 
         button:hover {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            border-color: rgba(255,255,255,0.4);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         button:active {
@@ -346,23 +380,62 @@
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 2.2rem; }
-            p, ul li, .status-badge { font-size: 1.15rem; }
-            .slide { padding: 40px; margin: 0 20px; }
-            .grid-list { grid-template-columns: 1fr; gap: 0; }
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+
+            p,
+            ul li,
+            .status-badge {
+                font-size: 1.15rem;
+            }
+
+            .slide {
+                padding: 40px;
+                margin: 0 20px;
+            }
+
+            .grid-list {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            h2 { font-size: 1.8rem; }
-            .controls-container { padding: 0 20px; bottom: 25px; }
-            button { padding: 12px 20px; font-size: 1rem; }
-            .tagline { font-size: 1.25rem; }
-            .slide { padding: 30px 20px; margin: 0 10px; }
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .controls-container {
+                padding: 0 20px;
+                bottom: 25px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+
+            .tagline {
+                font-size: 1.25rem;
+            }
+
+            .slide {
+                padding: 30px 20px;
+                margin: 0 10px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div id="bg-container"></div>
@@ -373,12 +446,14 @@
     </div>
 
     <div class="presentation-container">
-        
+
         <!-- Slide 1 - Title -->
-        <div class="slide" data-bg="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=2000">
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=2000">
             <div class="slide-content">
                 <h1>FreshCheck</h1>
-                <p style="font-size: 1.7rem; font-weight: 500; color: #fff; margin-bottom: 0;">Smart Sticker for Food Freshness Detection</p>
+                <p style="font-size: 1.7rem; font-weight: 500; color: #fff; margin-bottom: 0;">Smart Sticker for Food
+                    Freshness Detection</p>
                 <div class="tagline">
                     “A simple sticker that protects food, health, and the planet.”
                 </div>
@@ -386,7 +461,8 @@
         </div>
 
         <!-- Slide 2 - Problem -->
-        <div class="slide" data-bg="https://images.unsplash.com/photo-1605640840605-14ac1855827b?auto=format&fit=crop&q=80&w=2000">
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1605640840605-14ac1855827b?auto=format&fit=crop&q=80&w=2000">
             <div class="slide-content">
                 <h2>Problem Statement</h2>
                 <p>The staggering reality of global food waste:</p>
@@ -405,7 +481,8 @@
         </div>
 
         <!-- Slide 3 - Health -->
-        <div class="slide" data-bg="https://images.unsplash.com/photo-1584473457406-6240486418e9?auto=format&fit=crop&q=80&w=2000">
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1584473457406-6240486418e9?auto=format&fit=crop&q=80&w=2000">
             <div class="slide-content">
                 <h2>Health Impact</h2>
                 <p>Spoiled food is a major, hidden public health hazard worldwide:</p>
@@ -415,17 +492,20 @@
                     <li>Creates <strong>$110 billion</strong> in economic losses globally</li>
                 </ul>
                 <div class="highlight-box">
-                    <strong>Core Problem:</strong> Consumers cannot easily detect true decay, relying on guesswork or smell-tests that are often inaccurate and dangerous.
+                    <strong>Core Problem:</strong> Consumers cannot easily detect true decay, relying on guesswork or
+                    smell-tests that are often inaccurate and dangerous.
                 </div>
             </div>
         </div>
 
         <!-- Slide 4 - Solution -->
-        <div class="slide" data-bg="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000">
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2000">
             <div class="slide-content">
                 <h2>Our Solution</h2>
-                <p>FreshCheck is a bio-reactive smart sticker that detects food spoilage in real time. It reacts to <strong>ammonia gas, ethylene gas, and moisture</strong> directly inside the packaging.</p>
-                
+                <p>FreshCheck is a bio-reactive smart sticker that detects food spoilage in real time. It reacts to
+                    <strong>ammonia gas, ethylene gas, and moisture</strong> directly inside the packaging.</p>
+
                 <div class="status-container">
                     <div class="status-badge status-green">
                         <div class="status-icon"></div>
@@ -444,21 +524,27 @@
         </div>
 
         <!-- Slide 5 - Benefits -->
-        <div class="slide" data-bg="https://images.unsplash.com/photo-1543168256-4154004e4e25?auto=format&fit=crop&q=80&w=2000">
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1543168256-4154004e4e25?auto=format&fit=crop&q=80&w=2000">
             <div class="slide-content">
                 <h2>Benefits</h2>
                 <ul>
                     <li><strong>Prevents Food Poisoning:</strong> Guarantees food safety with verifiable chemistry.</li>
-                    <li><strong>Reduces Food Waste:</strong> Maximizes the consumable timeline of fresh produce and meats.</li>
-                    <li><strong>Real-time Monitoring:</strong> Eliminates reliance on worst-case printed expiration dates.</li>
-                    <li><strong>Better Inventory Management:</strong> Enables dynamic pricing for grocers based on actual quality.</li>
-                    <li><strong>Improves Consumer Trust:</strong> Boosts brand reputation for companies adopting transparent packaging.</li>
+                    <li><strong>Reduces Food Waste:</strong> Maximizes the consumable timeline of fresh produce and
+                        meats.</li>
+                    <li><strong>Real-time Monitoring:</strong> Eliminates reliance on worst-case printed expiration
+                        dates.</li>
+                    <li><strong>Better Inventory Management:</strong> Enables dynamic pricing for grocers based on
+                        actual quality.</li>
+                    <li><strong>Improves Consumer Trust:</strong> Boosts brand reputation for companies adopting
+                        transparent packaging.</li>
                 </ul>
             </div>
         </div>
 
         <!-- Slide 6 - Target -->
-        <div class="slide" data-bg="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000">
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000">
             <div class="slide-content">
                 <h2>Target Users</h2>
                 <p>FreshCheck connects and protects the entire food supply chain:</p>
@@ -478,7 +564,8 @@
         </div>
 
         <!-- Slide 7 - Strengths -->
-        <div class="slide" data-bg="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2000">
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2000">
             <div class="slide-content">
                 <h2>Strengths</h2>
                 <ul>
@@ -492,13 +579,16 @@
         </div>
 
         <!-- Slide 8 - Weaknesses -->
-        <div class="slide" data-bg="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=2000">
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&q=80&w=2000">
             <div class="slide-content">
                 <h2>Weaknesses</h2>
-                <div style="padding: 30px; background: rgba(255,255,255,0.05); border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
+                <div
+                    style="padding: 30px; background: rgba(255,255,255,0.05); border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);">
                     <ul style="margin: 0;">
                         <li>Needs individual chemical calibration for different food types (meat vs. fish vs. veg)</li>
-                        <li>Potential environmental sensitivity (temperature spikes could affect the sticker dye itself)</li>
+                        <li>Potential environmental sensitivity (temperature spikes could affect the sticker dye itself)
+                        </li>
                         <li>Regulatory approvals (e.g., FDA) required before integration with food packaging</li>
                         <li>Consumers must be taught to trust the indicator over the printed date</li>
                     </ul>
@@ -507,29 +597,141 @@
         </div>
 
         <!-- Slide 9 - Opportunities -->
-        <div class="slide" data-bg="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000">
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2000">
             <div class="slide-content">
                 <h2>Opportunities</h2>
                 <ul>
-                    <li>Rapidly growing multi-billion dollar smart packaging market</li>
-                    <li>Global and governmental focus shift toward eliminating food waste</li>
-                    <li>Massive expansion of grocery delivery services needing quality guarantees</li>
-                    <li>Lucrative partnerships with major supermarkets for exclusive rollouts</li>
-                    <li>Increasing consumer demand for transparent and safe food sourcing</li>
+                    <li>The global smart packaging market is projected to exceed $30+ billion by 2030.</li>
+                    <li>Increasing global and governmental focus on food waste reduction initiatives.</li>
+                    <li>The rapid expansion of e-commerce and online grocery delivery demands better freshness
+                        guarantees.</li>
+                    <li>B2B partnerships with major supermarket chains and large-scale food brands.</li>
                 </ul>
             </div>
         </div>
 
         <!-- Slide 10 - Threats -->
-        <div class="slide" data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=2000">
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=2000">
             <div class="slide-content">
                 <h2>Threats</h2>
                 <ul>
-                    <li>Competition from well-funded IoT or embedded smart packaging companies</li>
-                    <li>Extra cost concerns from budget food producers driving resistance</li>
-                    <li>Strict regulatory barriers protecting traditional labeling conventions</li>
-                    <li>Massive reputational risk if inaccurate readings lead to foodborne illness</li>
+                    <li>Competition from emerging smart packaging startups and electronic trace systems.</li>
+                    <li>Retailers may resist the additional packaging costs, even if minimal.</li>
+                    <li>Regulatory barriers and slow approval processes in various international markets.</li>
+                    <li>Risk of false positives/negatives (inaccurate readings) destroying consumer trust in the
+                        product.</li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- Slide 11 - Materials Science -->
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Materials Science behind FreshCheck</h2>
+                <div class="grid-list">
+                    <ul>
+                        <li><strong>1. Colorimetric Indicators</strong><br><span
+                                style="font-size: 1rem; color: var(--text-muted); display: block; margin-top: 5px;">pH-sensitive
+                                dyes, Anthocyanin (natural plant pigments)</span></li>
+                        <li><strong>2. Gas-Sensitive Compounds</strong><br><span
+                                style="font-size: 1rem; color: var(--text-muted); display: block; margin-top: 5px;">Ammonia-sensitive
+                                dyes, Ethylene-sensitive chemical sensors</span></li>
+                    </ul>
+                    <ul>
+                        <li><strong>3. Substrate Materials</strong><br><span
+                                style="font-size: 1rem; color: var(--text-muted); display: block; margin-top: 5px;">Paper-based
+                                sensor strips, Biodegradable polymer films, Cellulose-based packaging</span></li>
+                        <li><strong>4. Protective Layer</strong><br><span
+                                style="font-size: 1rem; color: var(--text-muted); display: block; margin-top: 5px;">Food-safe
+                                plastic coatings, Breathable membranes (gas permeable)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12 - Future Scope -->
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Future Scope</h2>
+                <p>The roadmap for FreshCheck beyond version 1.0:</p>
+                <ul>
+                    <li><strong>Digital Integration:</strong> QR code linking to smartphone apps for detailed scanning
+                        histories.</li>
+                    <li><strong>AI Tracking:</strong> AI-based freshness tracking systems analyzing patterns across the
+                        cold chain.</li>
+                    <li><strong>Supply Chain IoT:</strong> Smart supply chain monitoring integrating sticker data into
+                        warehouse dashboards.</li>
+                    <li><strong>Eco-Friendly:</strong> Transitioning to fully biodegradable sensor materials for zero
+                        footprints.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 13 - Conclusion -->
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>Conclusion</h2>
+                <p style="margin-bottom: 0.5rem; color: #fff;">FreshCheck provides a simple, affordable, and scalable
+                    solution to improve global food safety.</p>
+                <p>By detecting spoilage gases and indicating freshness in real time, we can:</p>
+                <ul>
+                    <li>Reduce a $1 Trillion food waste problem</li>
+                    <li>Protect consumer health worldwide</li>
+                    <li>Improve trust in the food supply chain</li>
+                </ul>
+                <div class="tagline">
+                    Join us in protecting food, health, and the planet.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14 - References & Fact Check -->
+        <div class="slide"
+            data-bg="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=2000">
+            <div class="slide-content">
+                <h2>References & Fact Check</h2>
+                <div style="max-height: 50vh; overflow-y: auto; padding-right: 15px;">
+                    <ul>
+                        <li style="margin-bottom: 1.5rem;">
+                            <strong>World Health Organization (WHO) – Food Safety Statistics</strong><br>
+                            <a href="https://www.who.int/news-room/fact-sheets/detail/food-safety" target="_blank"
+                                style="color: #93c5fd; text-decoration: none; font-size: 1.1rem; word-break: break-all;">https://www.who.int/news-room/fact-sheets/detail/food-safety</a><br>
+                            <span
+                                style="font-size: 1rem; color: var(--text-muted); display: block; margin-top: 5px;">Source
+                                for 600m illnesses, 420k deaths, and $110B economic loss data.</span>
+                        </li>
+                        <li style="margin-bottom: 1.5rem;">
+                            <strong>UNEP Food Waste Index Report 2024</strong><br>
+                            <a href="https://www.unep.org/resources/report/unep-food-waste-index-report-2024"
+                                target="_blank"
+                                style="color: #93c5fd; text-decoration: none; font-size: 1.1rem; word-break: break-all;">https://www.unep.org/resources/report/unep-food-waste-index-report-2024</a><br>
+                            <span
+                                style="font-size: 1rem; color: var(--text-muted); display: block; margin-top: 5px;">Source
+                                for 1.05 billion tonnes food waste in 2022 and 8-10% GHG emissions.</span>
+                        </li>
+                        <li style="margin-bottom: 1.5rem;">
+                            <strong>FAO – Global Food Loss and Waste Hub</strong><br>
+                            <a href="https://www.fao.org/platform-food-loss-waste" target="_blank"
+                                style="color: #93c5fd; text-decoration: none; font-size: 1.1rem; word-break: break-all;">https://www.fao.org/platform-food-loss-waste</a><br>
+                            <span
+                                style="font-size: 1rem; color: var(--text-muted); display: block; margin-top: 5px;">Source
+                                for ~1.3 billion tons historical waste, and one-third production loss.</span>
+                        </li>
+                        <li style="margin-bottom: 1.5rem;">
+                            <strong>World Resources Institute (WRI) – Food Loss and Waste</strong><br>
+                            <a href="https://www.wri.org/insights/food-loss-and-waste-global" target="_blank"
+                                style="color: #93c5fd; text-decoration: none; font-size: 1.1rem; word-break: break-all;">https://www.wri.org/insights/food-loss-and-waste-global</a><br>
+                            <span
+                                style="font-size: 1rem; color: var(--text-muted); display: block; margin-top: 5px;">Source
+                                confirming the estimated $1 Trillion economic cost of global food waste.</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -537,7 +739,7 @@
 
     <!-- CONTROLS -->
     <div class="controls-container">
-        <div class="slide-counter" id="slide-counter">1 / 10</div>
+        <div class="slide-counter" id="slide-counter">1 / 14</div>
         <div class="nav-buttons">
             <button id="prevBtn" onclick="prevSlide()">
                 <span>←</span> Previous
@@ -569,7 +771,7 @@
             // Guard clauses for bounds
             if (index < 0) index = 0;
             if (index > slides.length - 1) index = slides.length - 1;
-            
+
             const prevIndex = currentSlideIndex;
             currentSlideIndex = index;
 
@@ -577,12 +779,12 @@
             if (slides[prevIndex]) {
                 slides[prevIndex].classList.remove('active');
             }
-            
+
             // Re-trigger animation by forcing reflow
             const currentContent = slides[currentSlideIndex].querySelector('.slide-content');
             currentContent.style.animation = 'none';
             void currentContent.offsetWidth; // Trigger reflow
-            currentContent.style.animation = null; 
+            currentContent.style.animation = null;
 
             slides[currentSlideIndex].classList.add('active');
 
@@ -599,7 +801,7 @@
 
             // Update Next/Prev Button States
             prevBtn.disabled = currentSlideIndex === 0;
-            
+
             if (currentSlideIndex === slides.length - 1) {
                 nextBtn.innerHTML = `Finish <span>✓</span>`;
                 nextBtn.style.background = "#ffffff";
@@ -629,7 +831,7 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight' || e.key === ' ') {
                 nextSlide();
-                if(e.key === ' ') e.preventDefault(); // Prevent page scroll
+                if (e.key === ' ') e.preventDefault(); // Prevent page scroll
             } else if (e.key === 'ArrowLeft') {
                 prevSlide();
             }
@@ -641,4 +843,5 @@
         });
     </script>
 </body>
+
 </html>
