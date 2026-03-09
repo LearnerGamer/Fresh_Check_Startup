@@ -1,138 +1,41 @@
-# FreshCheck – Smart Food Freshness Indicator
+# FreshCheck
+> Smart Sticker for Food Freshness Detection
 
-FreshCheck is a concept project that demonstrates a **smart freshness indicator sticker** designed to detect food spoilage in real time. The project is presented as a **web-based presentation site** that explains the problem of global food waste and introduces FreshCheck as a potential solution.
+## 📌 Overview
+**FreshCheck** is a bio-reactive smart sticker designed to detect food spoilage in real-time. By reacting to ammonia gas, ethylene gas, and moisture directly inside the packaging, it provides a visual color-coded indicator of food freshness. 
 
-The sticker concept uses **bio-reactive materials that respond to gases such as ammonia and ethylene**, which are released during food decomposition. By monitoring these spoilage signals, FreshCheck helps consumers and retailers identify unsafe food, reduce unnecessary waste, and improve food safety.
+This repository contains the interactive, fullscreen web presentation built to pitch the FreshCheck startup concept.
 
----
+## ✨ Features of the Web Presentation
+- **Interactive Slideshow:** Fullscreen slide presentation with a modern glassmorphism design.
+- **Dynamic Backgrounds:** High-quality, theme-appropriate background images for each slide.
+- **Progress Tracking:** A sleek top progress bar indicating the current position in the pitch.
+- **Keyboard Navigation:** Support for left/right arrow keys and the spacebar for easy navigation.
+- **Fully Responsive:** Adapts to different screen sizes for seamless viewing on desktop, tablet, and mobile devices.
 
-## 🌍 Problem
+## 🚀 How to Run
+1. Clone or download this project folder.
+2. Open `index.html` in any modern web browser (Chrome, Firefox, Safari, Edge).
+3. Use the **Next** and **Previous** buttons at the bottom, or the `Arrow` keys / `Spacebar` on your keyboard, to navigate through the slides.
 
-Food waste and foodborne illness are major global issues:
+## 🛠️ Built With
+- **HTML5:** Semantic structure and layout for the presentation slides.
+- **Vanilla CSS3:** Custom animations, glassmorphism UI (`backdrop-filter`), variables, and flexbox/grid layouts. No external CSS styling frameworks were used.
+- **Vanilla JavaScript:** DOM manipulation, event listeners for keyboard navigation, and slide state management.
+- **Google Fonts:** Utilizing 'Poppins' for headers and 'Inter' for body text.
 
-* Around **1.3 billion tons of food are wasted every year**.
-* Nearly **one-third of all food produced is lost or wasted**.
-* **600 million people** fall sick annually from contaminated food.
-* Food waste also contributes significantly to **global greenhouse gas emissions**.
+## 📖 Presentation Outline
+1. **Introduction & Problem Statement** - Exposing the staggering reality of global food waste (a $1 Trillion issue).
+2. **Health Impact** - The hidden public health hazards of consuming spoiled food.
+3. **The Solution** - The bio-reactive, color-changing smart sticker.
+4. **Benefits & Target Users** - Value proposals for supermarkets, logistics, and end-consumers.
+5. **SWOT Analysis** - Strengths, Weaknesses, Opportunities, and Threats in the $30B+ smart packaging market.
+6. **Materials Science** - Breakdown of colorimetric indicators, gas-sensitive compounds, substrates, and breathable protective layers.
+7. **Future Scope** - Roadmap including digital integration (QR), AI tracking, IoT, and eco-friendly material transitions.
+8. **Fact Check** - Verifiable statistics and references from WHO, UNEP, FAO, and WRI.
 
-Consumers often rely only on **expiration labels**, which do not always reflect the real freshness of food.
-
----
-
-## 💡 Solution
-
-FreshCheck proposes a **smart packaging indicator** that reacts to chemical signals released during food spoilage.
-
-The system works by detecting gases such as:
-
-* Ammonia
-* Ethylene
-* Moisture from microbial decomposition
-
-These signals allow the sticker to provide **real-time freshness information**, helping people make better decisions about food safety.
-
----
-
-## ✨ Features of the Website
-
-The project includes a **modern presentation-style website** with:
-
-* Fullscreen slide-based layout
-* Modern glassmorphism design
-* Background images for each slide
-* Smooth slide transitions
-* Navigation buttons and keyboard controls
-* Progress bar for slide navigation
-
-The site is designed to function like a **startup pitch presentation**.
+## 📝 License
+This project layout and code are open-source and available for educational and entrepreneurial use.
 
 ---
-
-## 🧪 Possible Materials for FreshCheck
-
-Potential materials used in the sticker include:
-
-**Colorimetric indicators**
-
-* pH-sensitive dyes
-* Anthocyanin natural pigments
-
-**Gas-sensitive compounds**
-
-* Ammonia-sensitive dyes
-* Ethylene sensors
-
-**Substrate materials**
-
-* Paper-based sensor strips
-* Biodegradable polymer films
-* Cellulose packaging materials
-
-**Protective layer**
-
-* Food-safe plastic coating
-* Breathable membrane
-
----
-
-## 🚀 Future Scope
-
-Future development could include:
-
-* QR code integration with mobile apps
-* AI-based freshness monitoring
-* Smart supply chain tracking
-* Fully biodegradable sensor materials
-* IoT-enabled smart food packaging
-
----
-
-## 📂 Project Structure
-
-```
-FreshCheck/
-│
-├── index.html
-├── images/
-│   ├── slide1.jpg
-│   ├── slide2.jpg
-│   ├── slide3.jpg
-│   └── ...
-└── README.md
-```
-
----
-
-## ▶️ How to Run the Project
-
-1. Download or clone the project.
-2. Open the project folder.
-3. Double-click **index.html**.
-4. The presentation will open in your web browser.
-
-Use **arrow keys or navigation buttons** to move between slides.
-
----
-
-## 📚 References
-
-World Health Organization – Food Safety
-https://www.who.int/news-room/fact-sheets/detail/food-safety
-
-Food and Agriculture Organization – Food Waste Data
-https://www.fao.org/platform-food-loss-waste
-
-UNEP Food Waste Index Report
-https://www.unep.org/resources/report/unep-food-waste-index-report-2024
-
-World Resources Institute – Global Food Waste Research
-https://www.wri.org/insights/food-loss-and-waste-global
-
-Our World in Data – Food Waste
-https://ourworldindata.org/food-waste
-
----
-
-## 📌 Note
-
-FreshCheck is currently a **conceptual innovation project** aimed at exploring how smart packaging technology could reduce food waste and improve food safety.
+*“A simple sticker that protects food, health, and the planet.”*
